@@ -32,7 +32,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
     public MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
-
+//opkkk
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_PRODUCTS + "(" +
