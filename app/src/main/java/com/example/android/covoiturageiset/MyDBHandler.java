@@ -71,7 +71,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
         db.execSQL(table_notifications);
 
         String table_propositions = "CREATE TABLE " + TABLE_PROPOSITIONS + "(" +
-                COL_NUM_PROPOSITION  + " TEXT PRIMARY KEY AUTOINCREMENT, " +
+                COL_NUM_PROPOSITION  + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_NUM_ET + " TEXT ," +
                 COL_DEPART + " TEXT ," +
                 COL_DESTINATION + " TEXT ," +
@@ -108,7 +108,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
         values.put(COL_DESTINATION, proposition.getDestination());
         values.put(COL_DATE_DEPART, proposition.getDate_proposition());
         SQLiteDatabase db = getWritableDatabase();
-        Long add=db.insert( TABLE_ETUDIANTS, null, values);
+        Long add=db.insert( TABLE_PROPOSITIONS, null, values);
         db.close();
         Log.d("addProposition","add="+Long.toString(add));
         return add;
