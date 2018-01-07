@@ -11,6 +11,8 @@ public class Etudiant {
     private String CIN;
     private String mail;
     private String password;
+    private String Solde;
+
 
 
     //Added this empty constructor in lesson 50 in case we ever want to create the object and assign it later.

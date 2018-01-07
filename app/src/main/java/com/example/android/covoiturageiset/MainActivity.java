@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText ET_nom,ET_prenom,ET_num_et,ET_CIN,ET_mail,ET_Password,ET_confirmer_Password;
-    public MyDBHandler dbHandler;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
 
     }
 

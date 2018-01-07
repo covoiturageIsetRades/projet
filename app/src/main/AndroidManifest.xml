@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Acceuil">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,8 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Authentification"
-            android:label="Inscription"></activity>
+        <activity
+            android:name=".Authentification"
+            android:label="Inscription" />
+        <activity
+            android:name=".Menu_covoiturage"
+            android:label="@string/title_activity_menu_covoiturage"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Proposer"></activity>
     </application>
 
 </manifest>

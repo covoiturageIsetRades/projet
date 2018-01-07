@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="planets_array">
+        <item>Beja</item>
+        <item>Ben Arous</item>
+        <item>Gafsa</item>
+        <item>Gabes</item>
+        <item>Jendouba</item>
+        <item>Manouba</item>
+        <item>Mehdia</item>
+        <item>Monastir</item>
+        <item>Nabeul</item>
+        <item>Sfax</item>
+        <item>Sidi Bouzid</item>
+        <item>Sousse</item>
+        <item>Tataouine</item>
+        <item>Tunis</item>
+        <item>Kasserine</item>
+        <item>Kef</item>
+        <item>Zarzis</item>
+    </string-array>
+</resources>

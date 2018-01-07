@@ -10,41 +10,43 @@
     <EditText
         android:id="@+id/ET_nom"
         android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:width="300dp"
-        android:hint="nom"
+        android:layout_height="35dp"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="24dp"
         android:layout_toLeftOf="@+id/ET_prenom"
         android:layout_toStartOf="@+id/ET_prenom"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp" />
+        android:width="300dp"
+        android:background="@drawable/edittext_style"
+        android:hint=" Nom" />
 
 
     <EditText
         android:id="@+id/ET_prenom"
         android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:ems="10"
-        android:hint="Prénom"
-        android:inputType="textPersonName"
+        android:layout_height="35dp"
         android:layout_alignBaseline="@+id/ET_nom"
         android:layout_alignBottom="@+id/ET_nom"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="@drawable/edittext_style"
+        android:ems="10"
+        android:hint=" Prénom"
+        android:inputType="textPersonName" />
+
     <EditText
         android:id="@+id/ET_CIN"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="CIN"
-        android:inputType="number"
-        android:layout_below="@+id/ET_nom"
+        android:layout_height="35dp"
         android:layout_alignLeft="@+id/ET_nom"
-        android:layout_alignStart="@+id/ET_nom" />
+        android:layout_alignStart="@+id/ET_nom"
+        android:layout_below="@+id/ET_nom"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edittext_style"
+        android:ems="10"
+        android:hint=" CIN"
+        android:inputType="number" />
 
     <Button
         android:layout_width="wrap_content"
@@ -59,19 +61,18 @@
         android:background="@drawable/bg_button"/>
 
 
-
     <EditText
         android:id="@+id/ET_num_et"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="N° Carte d'etudiant"
-        android:inputType="textPersonName"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/ET_CIN"
+        android:layout_height="35dp"
         android:layout_alignLeft="@+id/ET_CIN"
         android:layout_alignStart="@+id/ET_CIN"
-        />
+        android:layout_below="@+id/ET_CIN"
+        android:layout_marginTop="41dp"
+        android:background="@drawable/edittext_style"
+        android:ems="10"
+        android:hint=" N° Carte d'etudiant"
+        android:inputType="textPersonName" />
     <Button
         android:id="@+id/add_Button"
         android:layout_width="wrap_content"
@@ -89,37 +90,40 @@
     <EditText
         android:id="@+id/ET_mail"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignLeft="@+id/ET_num_et"
         android:layout_alignStart="@+id/ET_num_et"
         android:layout_below="@+id/ET_num_et"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="41dp"
+        android:background="@drawable/edittext_style"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint=" E-mail"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/ET_password"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignLeft="@+id/ET_mail"
         android:layout_alignStart="@+id/ET_mail"
         android:layout_below="@+id/ET_mail"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/edittext_style"
         android:ems="10"
-        android:hint="mot de passe"
+        android:hint=" Mot de passe"
         android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/ET_confirmer_password"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignLeft="@+id/ET_password"
         android:layout_alignStart="@+id/ET_password"
         android:layout_below="@+id/ET_password"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/edittext_style"
         android:ems="10"
-        android:hint="Confirmer mot de passe"
+        android:hint=" Confirmer mot de passe"
         android:inputType="textPassword" />
 
 
