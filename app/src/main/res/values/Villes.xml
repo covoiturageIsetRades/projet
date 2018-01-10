@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="planets_array">
+        <item>-Sélectionner-</item>
         <item>Beja</item>
         <item>Ben Arous</item>
+        <item>Bizerte</item>
         <item>Gafsa</item>
         <item>Gabes</item>
+        <item>Gbili</item>
         <item>Jendouba</item>
+        <item>Kalaa Kebira</item>
+        <item>Kasserine</item>
+        <item>Kairouan</item>
+        <item>Ksar Hellal</item>
+        <item>Korbous</item>
+        <item>Kélibia</item>
+        <item>Lamta</item>
+        <item>Makther</item>
         <item>Manouba</item>
-        <item>Mehdia</item>
+        <item>Mahdia</item>
+        <item>Moknine</item>
+        <item>Mourouj</item>
+        <item>Marsa</item>
+        <item>Mednine</item>
         <item>Monastir</item>
         <item>Nabeul</item>
         <item>Sfax</item>
         <item>Sidi Bouzid</item>
+        <item>Sidi Bou Said</item>
         <item>Sousse</item>
         <item>Tataouine</item>
         <item>Tunis</item>
-        <item>Kasserine</item>
+        <item>La Soukra</item>
+        <item>Menzel Bouzelfa</item>
+        <item>Menzel Temime</item>
         <item>Kef</item>
+        <item>Hammamet</item>
+        <item>Enfida</item>
+        <item>Hammam Sousse</item>
+        <item>Tabarka</item>
+        <item>El jam</item>
+        <item>La Goulette</item>
+        <item>Ain Drahem</item>
+        <item>Le Bardou</item>
+        <item>Douz</item>
+        <item>Nefta</item>
+        <item>Korba</item>
+        <item>Rades</item>
+        <item>Menzel Bourguiba</item>
+        <item>Hergla</item>
         <item>Zarzis</item>
+        <item>Zaghouan</item>
     </string-array>
 </resources>

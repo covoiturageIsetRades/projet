@@ -4,22 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.covoiturageiset.Proposer">
+    tools:context="com.example.android.covoiturageiset.Proposer"
+    android:background="@drawable/background">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spinner_villes1"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginBottom="18dp"
+        android:text="Voulez-vous proposer un trajet ?"
+        android:textColor="@color/lightorange"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="52dp"
-        android:text="De :"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="89dp"
+        android:layout_toLeftOf="@+id/b_proposer"
+        android:layout_toStartOf="@+id/b_proposer"
+        android:text="Départ :"
+        android:textColor="@color/lightorange"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_villes1"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/spinner_villes2"
+        android:layout_alignStart="@+id/spinner_villes2"
+        android:background="@drawable/bg_button" />
 
     <TextView
         android:id="@+id/textView4"
@@ -29,18 +52,10 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_below="@+id/spinner_villes1"
         android:layout_marginTop="53dp"
-        android:text="Vers :"
+        android:text="Destination :"
+        android:textColor="@color/lightorange"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <Spinner
-        android:id="@+id/spinner_villes1"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:background="@drawable/bg_button"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignLeft="@+id/spinner_villes2"
-        android:layout_alignStart="@+id/spinner_villes2" />
 
     <Spinner
         android:id="@+id/spinner_villes2"
@@ -53,26 +68,42 @@
         android:layout_toRightOf="@+id/textView4"
         android:background="@drawable/bg_button" />
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:text="Choisir la date :"
+        android:textColor="@color/lightorange"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner_villes2"
+        android:layout_alignStart="@+id/spinner_villes2"
+        android:layout_below="@+id/spinner_villes2"
+        android:layout_marginTop="36dp"
         android:background="@drawable/bg_button"
         android:onClick="showDatePickerDialog"
-        android:text="Régler la date"
-        android:layout_marginTop="131dp"
-        android:layout_below="@+id/spinner_villes2"
-        android:layout_toRightOf="@+id/textview"
-        android:layout_toEndOf="@+id/textview" />
+        android:text="Régler la date" />
 
     <TextView
         android:id="@+id/tv_date"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textview"
-        android:layout_alignBottom="@+id/textview"
-        android:layout_toEndOf="@+id/textview"
-        android:layout_toRightOf="@+id/textview"
+        android:layout_alignLeft="@+id/b_proposer"
+        android:layout_alignStart="@+id/b_proposer"
+        android:layout_below="@+id/button"
+        android:layout_marginTop="33dp"
+        android:textAlignment="center"
+        android:textColor="@color/lightorange"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -80,25 +111,50 @@
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date de covoiturage :"
+        android:text="Choisir l'heure :"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="70dp"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4" />
+        android:textColor="@color/lightorange"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tv_date"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
+
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview"
+        android:layout_alignBottom="@+id/textview"
+        android:layout_alignEnd="@+id/button"
+        android:layout_alignRight="@+id/button"
+        android:background="@drawable/bg_button"
+        android:onClick="showTimePickerDialog"
+        android:text="Régler l'heure" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/b_proposer"
+        android:layout_alignLeft="@+id/b_proposer"
+        android:layout_alignStart="@+id/b_proposer"
+        android:layout_marginBottom="19dp"
+        android:textColor="@color/lightorange"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/b_proposer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="42dp"
         android:text="Proposer le trajet"
         android:background="@drawable/bg_button"
         android:onClick="Ajouter_proposition"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

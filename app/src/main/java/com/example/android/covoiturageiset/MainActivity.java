@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             else
             {Toast.makeText(this, "Iscription réussite", Toast.LENGTH_SHORT).show();
              startActivity(new Intent(this,Authentification.class));
-                String dbString = dbHandler.databaseToString();
+                String dbString = dbHandler.EtudiantsToString();
                 Log.d("Database=",dbString);
             }
 
@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
     }
     //Print the database
     public void printDatabase(){
-        String dbString = dbHandler.databaseToString();
-        Log.d("Database=",dbString);
+        String dbString = dbHandler.EtudiantsToString();
+        Log.d("TABLE_ETUDIANTS=",dbString);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);

@@ -16,6 +16,8 @@
         android:layout_marginTop="137dp"
         android:background="@drawable/edittext_style"
         android:ems="10"
+        android:padding="3dp"
+        android:hint="N° de la carte étudiant"
         android:inputType="textPersonName" />
 
     <EditText
@@ -26,6 +28,8 @@
         android:ems="10"
         android:inputType="textPassword"
         android:layout_marginTop="10dp"
+        android:padding="3dp"
+        android:hint="Votre mot de passe"
         android:layout_below="@+id/textView2"
         android:layout_alignLeft="@+id/ET_matricule"
         android:layout_alignStart="@+id/ET_matricule" />

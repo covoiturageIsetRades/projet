@@ -24,7 +24,9 @@
             android:name=".Menu_covoiturage"
             android:label="@string/title_activity_menu_covoiturage"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Proposer"></activity>
+        <activity android:name=".Proposer" />
+        <activity android:name=".Chercher" />
+        <activity android:name=".Prop_cov"></activity>
     </application>
 
 </manifest>

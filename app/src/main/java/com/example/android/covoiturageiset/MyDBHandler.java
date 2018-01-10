@@ -18,6 +18,9 @@ import android.content.ContentValues;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MyDBHandler extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "etudiantDB.db";
@@ -42,12 +45,14 @@ public class MyDBHandler extends SQLiteOpenHelper{
     public static final String COL_DEPART = "DEPART";
     public static final String COL_DESTINATION = "DESTINATION";
     public static final String COL_DATE_DEPART = "DATE_DEPART";
-
+    public static final String COL_TIME_DEPART = "TIME_DEPART";
 
 
     public MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -71,11 +76,12 @@ public class MyDBHandler extends SQLiteOpenHelper{
         db.execSQL(table_notifications);
 
         String table_propositions = "CREATE TABLE " + TABLE_PROPOSITIONS + "(" +
-                COL_NUM_PROPOSITION  + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL_NUM_ET + " TEXT ," +
-                COL_DEPART + " TEXT ," +
-                COL_DESTINATION + " TEXT ," +
-                COL_DATE_DEPART + " TEXT " +
+                COL_NUM_PROPOSITION+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                COL_NUM_ET +" TEXT ,"+
+                COL_DEPART +" TEXT ,"+
+                COL_DESTINATION +" TEXT ,"+
+                COL_DATE_DEPART +" TEXT ,"+
+                COL_TIME_DEPART +" TEXT  "+
                 ");";
         db.execSQL(table_propositions);
 
@@ -107,6 +113,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
         values.put(COL_DEPART, proposition.getDepart());
         values.put(COL_DESTINATION, proposition.getDestination());
         values.put(COL_DATE_DEPART, proposition.getDate_proposition());
+        values.put(COL_TIME_DEPART, proposition.getTime_proposition());
         SQLiteDatabase db = getWritableDatabase();
         Long add=db.insert( TABLE_PROPOSITIONS, null, values);
         db.close();
@@ -117,6 +124,10 @@ public class MyDBHandler extends SQLiteOpenHelper{
     public void deleteEtudiant(String num_etudiant){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " +  TABLE_ETUDIANTS + " WHERE " + COL_NUM_ET + "=\"" + num_etudiant + "\";");
+    }
+    public void deleteProposition(String num_proposition){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " +  TABLE_ETUDIANTS + " WHERE " + COL_NUM_PROPOSITION + "=\"" + num_proposition + "\";");
     }
 
 
@@ -143,7 +154,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
 
     }
-    public String databaseToString(){
+    public String EtudiantsToString(){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " +  TABLE_ETUDIANTS + " WHERE 1";
@@ -168,6 +179,85 @@ public class MyDBHandler extends SQLiteOpenHelper{
         }
         db.close();
         return dbString;
+    }
+    public String PropositionsToString(){
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE 1";
+
+        Cursor recordSet = db.rawQuery(query, null);
+        recordSet.moveToFirst();
+
+        dbString="num_et       Proposition         depart         destination         date_depart       time_depart\n";
+        while (!recordSet.isAfterLast()) {
+            String ch_num_prop=recordSet.getString(recordSet.getColumnIndex(COL_NUM_PROPOSITION));
+            String ch_num_et=recordSet.getString(recordSet.getColumnIndex(COL_NUM_ET));
+            String ch_depart=recordSet.getString(recordSet.getColumnIndex(COL_DEPART));
+            String ch_destination=recordSet.getString(recordSet.getColumnIndex(COL_DESTINATION));
+            String ch_date_depart=recordSet.getString(recordSet.getColumnIndex(COL_DATE_DEPART));
+            String ch_time_depart=recordSet.getString(recordSet.getColumnIndex(COL_TIME_DEPART));
+
+            if (recordSet.getString(recordSet.getColumnIndex(COL_NUM_PROPOSITION)) != null) {
+                dbString +=ch_num_et+"          "+ch_num_prop+"          "+ch_depart+"          "+ch_destination+"           "+ch_date_depart+"            "+ch_time_depart;
+                dbString += "\n";
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return dbString;
+    }
+
+    public LinkedList<LinkedList> chercher_proposition(String destination,String date_dep){
+        String ch_prop;
+        String requete;
+        SQLiteDatabase db=getWritableDatabase();
+        final LinkedList<String> List_num_et = new LinkedList<>();
+        final LinkedList<String> List_depart = new LinkedList<>();
+        final LinkedList<String> List_destination = new LinkedList<>();
+        final LinkedList<String> List_date = new LinkedList<>();
+        final LinkedList<String> List_time = new LinkedList<>();
+        final LinkedList<LinkedList> List = new LinkedList<>();
+
+
+
+        if(destination.equals("-Sélectionner-"))
+            requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE 1";
+        else
+            requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE "+COL_DESTINATION+"=\""+destination+"\" AND "+
+                                          COL_DATE_DEPART+"=\""+date_dep+"\"";
+
+
+        Cursor recordSet = db.rawQuery(requete, null);
+        recordSet.moveToFirst();
+        ch_prop="num_et       Proposition         depart         destination         date_depart\n";
+        while (!recordSet.isAfterLast()) {
+            String ch_num_prop=recordSet.getString(recordSet.getColumnIndex(COL_NUM_PROPOSITION));
+            String ch_num_et=recordSet.getString(recordSet.getColumnIndex(COL_NUM_ET));
+            String ch_depart=recordSet.getString(recordSet.getColumnIndex(COL_DEPART));
+            String ch_destination=recordSet.getString(recordSet.getColumnIndex(COL_DESTINATION));
+            String ch_date_depart=recordSet.getString(recordSet.getColumnIndex(COL_DATE_DEPART));;
+            String ch_time_depart=recordSet.getString(recordSet.getColumnIndex(COL_TIME_DEPART));;
+
+            if (recordSet.getString(recordSet.getColumnIndex(COL_NUM_PROPOSITION)) != null) {
+                ch_prop +=ch_num_et+"          "+ch_num_prop+"            "+ch_depart+"            "+ch_destination+"            "+ch_date_depart+"             "+ch_time_depart;
+                ch_prop += "\n";
+            }
+            List_num_et.add(ch_num_et);
+            List_depart.add(ch_depart);
+            List_destination.add(ch_destination);
+            List_date.add(ch_date_depart);
+            List_time.add(ch_time_depart);
+
+            recordSet.moveToNext();
+        }
+        List.add(List_num_et);
+        List.add(List_depart);
+        List.add(List_destination);
+        List.add(List_date);
+        List.add(List_time);
+        db.close();
+        return List;
+
     }
 
 

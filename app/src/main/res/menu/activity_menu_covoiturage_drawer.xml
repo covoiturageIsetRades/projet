@@ -3,23 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_proposer"
             android:title="Proposer un trajet" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Rechercher un trajet" />
+            android:id="@+id/nav_chercher"
+            android:title="Chercher un trajet" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_notifications"
             android:icon="@mipmap/ic_notification"
             android:title="Notifications" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Messages" />
-        <item
-            android:id="@+id/nav_déconnexion"
+            android:id="@+id/nav_deconnexion"
             android:title="Déconnexion" />
     </group>
 

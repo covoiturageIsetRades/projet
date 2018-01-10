@@ -13,9 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Menu_covoiturage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    String num_et;
+    TextView tv_num_et,tv_nom_prenom;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,10 @@ public class Menu_covoiturage extends AppCompatActivity
         setContentView(R.layout.activity_menu_covoiturage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent intent=getIntent();
+        num_et=intent.getExtras().getString("num_et");
 
-
-
+        dbHandler=new MyDBHandler(this);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -34,6 +39,16 @@ public class Menu_covoiturage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header=navigationView.getHeaderView(0);
+/*View        view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
+        tv_nom_prenom = (TextView)header.findViewById(R.id.textView_nom_prenom);
+        tv_num_et = (TextView)header.findViewById(R.id.textView_num_et);
+        Etudiant et=dbHandler.chercherdb(num_et);
+        if(et!=null)
+        tv_nom_prenom.setText(et.getNom()+" "+et.getPrénom());
+        tv_num_et.setText(num_et);
+
     }
 
     @Override
@@ -61,9 +76,7 @@ public class Menu_covoiturage extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -74,18 +87,18 @@ public class Menu_covoiturage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_proposer) {
             Intent i=new Intent(this,Proposer.class);
+            i.putExtra("num_et",num_et);
             startActivity(i);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_chercher) {
+            Intent i=new Intent(this,Chercher.class);
+            i.putExtra("num_et",num_et);
+            startActivity(i);
+        } else if (id == R.id.nav_notifications) {
 
         }
-        else if (id == R.id.nav_déconnexion) {
+        else if (id == R.id.nav_deconnexion) {
             Intent i=new Intent(this,Authentification.class);
             startActivity(i);
             finish();

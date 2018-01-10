@@ -22,12 +22,13 @@ public class Authentification extends AppCompatActivity {
 
     public void Se_connecter(View view) {
         Etudiant et_cherché = dbHandler.chercherdb(ET_matricule.getText().toString());
-        Intent i=new Intent(Authentification.this,Menu_covoiturage.class);
-        startActivity(i);
+
         if(et_cherché!=null)
             if(et_cherché.getPassword().equals(ET_password.getText().toString())) {
-                Toast.makeText(this, "connexion reussite", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(this, "connexion réussite", Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(Authentification.this,Menu_covoiturage.class);
+                i.putExtra("num_et",ET_matricule.getText().toString());
+                startActivity(i);
               }
             else
                 Toast.makeText(this,"mot de passe incorrecte",Toast.LENGTH_SHORT).show();
