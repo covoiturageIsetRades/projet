@@ -100,7 +100,6 @@ public class Proposer extends AppCompatActivity {
         else
         {
         Proposition prop=new Proposition(sp_villes1.getSelectedItem().toString(),sp_villes2.getSelectedItem().toString(),date_prop,time_prop);
-            Log.d("hhhhhhhhhhhhhhhh",time_prop);
 
             Long add=db_prop.addProposition(prop,num_et);
         if (add==-1)

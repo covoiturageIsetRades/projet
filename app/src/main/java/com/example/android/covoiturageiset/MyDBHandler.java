@@ -220,10 +220,16 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
 
 
-        if(destination.equals("-Sélectionner-"))
+        if(destination.equals("-Sélectionner-") && date_dep==null)
             requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE 1";
         else
-            requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE "+COL_DESTINATION+"=\""+destination+"\" AND "+
+            if(!destination.equals("-Sélectionner-") && date_dep==null)
+                requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE "+COL_DESTINATION+"=\""+destination+"\"";
+            else
+                if(date_dep!=null && destination.equals("-Sélectionner-"))
+                    requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE "+COL_DATE_DEPART+"=\""+date_dep+"\"";
+            else
+               requete="SELECT * FROM " +  TABLE_PROPOSITIONS + " WHERE "+COL_DESTINATION+"=\""+destination+"\" AND "+
                                           COL_DATE_DEPART+"=\""+date_dep+"\"";
 
 

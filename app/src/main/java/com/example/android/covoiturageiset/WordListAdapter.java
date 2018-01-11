@@ -1,12 +1,16 @@
 package com.example.android.covoiturageiset;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -29,6 +33,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         public final TextView tv_et,tv_depart,tv_destination,tv_date,tv_time;
         final WordListAdapter mAdapter;
+        Button choisir;
 
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
@@ -39,17 +44,28 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             tv_destination = (TextView) itemView.findViewById(R.id.textView9);
             tv_date = (TextView) itemView.findViewById(R.id.tv_date_cov);
             tv_time = (TextView) itemView.findViewById(R.id.tv_heure);
-
+            choisir=(Button)itemView.findViewById(R.id.button2);
             this.mAdapter = adapter;
-            itemView.setOnClickListener(this);
+            choisir.setOnClickListener(this);
 
 
         }
 
         @Override
         public void onClick(View v) {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getContext());
+            builder1.setMessage("Vous avez choisi cette covoiturage , soyez à l'heure s'il vous plaît !!");
+            builder1.setCancelable(true);
+            builder1.setPositiveButton(
+                    "Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert11 = builder1.create();
 
-        }
+            alert11.show();        }
     }
 
     public WordListAdapter(Context context, LinkedList<LinkedList> mWordList) {
