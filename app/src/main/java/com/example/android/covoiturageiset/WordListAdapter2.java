@@ -77,6 +77,7 @@ public class WordListAdapter2 extends RecyclerView.Adapter<WordListAdapter2.Word
         holder.tv_time.setText(time);
 
 
+
     }
 
     @Override
