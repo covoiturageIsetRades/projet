@@ -23,7 +23,8 @@ public class Chercher extends AppCompatActivity {
     private TextView tv_date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     static MyDBHandler db_chercher;
-    String num_et,date_cherher;
+   static String num_et;
+    String date_cherher;
 
 
     private RecyclerView mRecyclerView;

@@ -69,9 +69,13 @@ public class MyDBHandler extends SQLiteOpenHelper{
         db.execSQL(table_etudiants);
 
         String table_notifications = "CREATE TABLE " + TABLE_NOTIFICATIONS + "(" +
-                COL_NUM_NOTIFICATION  + " TEXT PRIMARY KEY , " +
+                COL_NUM_NOTIFICATION  + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_NUM_SENDER + " TEXT ," +
-                COL_NUM_RECEIVER + " TEXT " +
+                COL_NUM_RECEIVER + " TEXT ," +
+                COL_DEPART +" TEXT ,"+
+                COL_DESTINATION +" TEXT ,"+
+                COL_DATE_DEPART +" TEXT ,"+
+                COL_TIME_DEPART +" TEXT  "+
                 ");";
         db.execSQL(table_notifications);
 
@@ -120,10 +124,14 @@ public class MyDBHandler extends SQLiteOpenHelper{
         Log.d("addProposition","add="+Long.toString(add));
         return add;
     }
-    public long addNotification(Notification not){
+    public long addNotification(Notification not,String dep,String dest,String date,String time){
         ContentValues values = new ContentValues();
         values.put(COL_NUM_SENDER, not.getNum_sender());
         values.put(COL_NUM_RECEIVER, not.getNum_receiver());
+        values.put(COL_DEPART, dep);
+        values.put(COL_DESTINATION, dest);
+        values.put(COL_DATE_DEPART, date);
+        values.put(COL_TIME_DEPART, time);
         SQLiteDatabase db = getWritableDatabase();
         Long add=db.insert( TABLE_NOTIFICATIONS, null, values);
         db.close();
@@ -216,7 +224,33 @@ public class MyDBHandler extends SQLiteOpenHelper{
         db.close();
         return dbString;
     }
+    public String NotificationsToString(){
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " +  TABLE_NOTIFICATIONS + " WHERE 1";
 
+        Cursor recordSet = db.rawQuery(query, null);
+        recordSet.moveToFirst();
+
+        dbString="num_not       num_sender         num_receiver  \n";
+        while (!recordSet.isAfterLast()) {
+            String ch_num_not=recordSet.getString(recordSet.getColumnIndex(COL_NUM_NOTIFICATION));
+            String ch_num_sender=recordSet.getString(recordSet.getColumnIndex(COL_NUM_SENDER));
+            String ch_num_receiver=recordSet.getString(recordSet.getColumnIndex(COL_NUM_RECEIVER));
+            String ch_depart=recordSet.getString(recordSet.getColumnIndex(COL_DEPART));
+            String ch_destination=recordSet.getString(recordSet.getColumnIndex(COL_DESTINATION));
+            String ch_date_depart=recordSet.getString(recordSet.getColumnIndex(COL_DATE_DEPART));
+            String ch_time_depart=recordSet.getString(recordSet.getColumnIndex(COL_TIME_DEPART));
+
+            if (recordSet.getString(recordSet.getColumnIndex(COL_NUM_NOTIFICATION)) != null) {
+                dbString +=ch_num_not+"          "+ch_num_sender+"          "+ch_num_receiver+"          "+ch_depart+"          "+ch_destination+"           "+ch_date_depart+"            "+ch_time_depart;
+                dbString += "\n";
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return dbString;
+    }
     public LinkedList<LinkedList> chercher_proposition(String destination,String date_dep){
         String ch_prop;
         String requete;
@@ -275,6 +309,61 @@ public class MyDBHandler extends SQLiteOpenHelper{
         return List;
 
     }
+
+    public LinkedList<LinkedList> chercher_notification(String num_receiver){
+        String requete;
+        SQLiteDatabase db=getWritableDatabase();
+        final LinkedList<String> List_num_sender = new LinkedList<>();
+        final LinkedList<String> List_depart = new LinkedList<>();
+        final LinkedList<String> List_destination = new LinkedList<>();
+        final LinkedList<String> List_date = new LinkedList<>();
+        final LinkedList<String> List_time = new LinkedList<>();
+        final LinkedList<LinkedList> List = new LinkedList<>();
+
+
+
+
+            requete="SELECT * FROM " +  TABLE_NOTIFICATIONS + " WHERE "+COL_NUM_RECEIVER+"=\""+num_receiver+"\"";
+
+
+
+        Cursor recordSet = db.rawQuery(requete, null);
+        recordSet.moveToFirst();
+        String ch_prop="num_et       Proposition         depart         destination         date_depart\n";
+
+        while (!recordSet.isAfterLast()) {
+            String ch_num_sender=recordSet.getString(recordSet.getColumnIndex(COL_NUM_SENDER));
+            String ch_depart=recordSet.getString(recordSet.getColumnIndex(COL_DEPART));
+            String ch_destination=recordSet.getString(recordSet.getColumnIndex(COL_DESTINATION));
+            String ch_date_depart=recordSet.getString(recordSet.getColumnIndex(COL_DATE_DEPART));;
+            String ch_time_depart=recordSet.getString(recordSet.getColumnIndex(COL_TIME_DEPART));;
+
+
+            if (recordSet.getString(recordSet.getColumnIndex(COL_NUM_NOTIFICATION)) != null) {
+                ch_prop +=ch_num_sender+"          "+ch_depart+"            "+ch_destination+"            "+ch_date_depart+"             "+ch_time_depart;
+                ch_prop += "\n";
+            }
+            List_num_sender.add(ch_num_sender);
+            List_depart.add(ch_depart);
+            List_destination.add(ch_destination);
+            List_date.add(ch_date_depart);
+            List_time.add(ch_time_depart);
+            recordSet.moveToNext();
+
+        }
+        Log.d("NOTIFICATIONS_RESULTATS",ch_prop);
+
+        List.add(List_num_sender);
+        List.add(List_depart);
+        List.add(List_destination);
+        List.add(List_date);
+        List.add(List_time);
+        db.close();
+        return List;
+
+    }
+
+
 
 
 

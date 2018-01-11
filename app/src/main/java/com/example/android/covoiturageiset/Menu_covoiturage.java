@@ -96,7 +96,9 @@ public class Menu_covoiturage extends AppCompatActivity
             i.putExtra("num_et",num_et);
             startActivity(i);
         } else if (id == R.id.nav_notifications) {
-
+            Intent i=new Intent(this,NotificationsActivity.class);
+            i.putExtra("num_et",num_et);
+            startActivity(i);
         }
         else if (id == R.id.nav_deconnexion) {
             Intent i=new Intent(this,Authentification.class);

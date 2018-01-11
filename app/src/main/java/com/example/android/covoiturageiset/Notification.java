@@ -7,9 +7,11 @@ package com.example.android.covoiturageiset;
 public class Notification {
     private String num_sender,num_receiver;
 
+
     public Notification(String num_sender, String num_receiver) {
         this.num_sender = num_sender;
         this.num_receiver = num_receiver;
+
     }
 
     public String getNum_sender() {
@@ -19,4 +21,5 @@ public class Notification {
     public String getNum_receiver() {
         return num_receiver;
     }
+
 }

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -40,8 +39,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
 
             tv_et = (TextView) itemView.findViewById(R.id.tv_et);
-            tv_depart = (TextView) itemView.findViewById(R.id.word);
-            tv_destination = (TextView) itemView.findViewById(R.id.textView9);
+            tv_depart = (TextView) itemView.findViewById(R.id.tvdep);
+            tv_destination = (TextView) itemView.findViewById(R.id.tvdest);
             tv_date = (TextView) itemView.findViewById(R.id.tv_date_cov);
             tv_time = (TextView) itemView.findViewById(R.id.tv_heure);
             choisir=(Button)itemView.findViewById(R.id.button2);
@@ -53,6 +52,11 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         @Override
         public void onClick(View v) {
+
+            Notification not=new Notification(Chercher.num_et,List_num_et.get(getAdapterPosition()));
+            Chercher.db_chercher.addNotification(not,tv_depart.getText().toString(),tv_destination.getText().toString(),
+                    tv_date.getText().toString(),tv_time.getText().toString());
+            Log.d("TABLE_NOTIFICATIONS",Chercher.db_chercher.NotificationsToString());
             AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getContext());
             builder1.setMessage("Vous avez choisi cette covoiturage , soyez à l'heure s'il vous plaît !!");
             builder1.setCancelable(true);
@@ -67,7 +71,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
             alert11.show();        }
     }
-
+/****************************************************************************************************/
     public WordListAdapter(Context context, LinkedList<LinkedList> mWordList) {
         mInflater = LayoutInflater.from(context);
         this.List = mWordList;

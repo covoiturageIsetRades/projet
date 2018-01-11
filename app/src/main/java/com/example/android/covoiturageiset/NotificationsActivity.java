@@ -10,36 +10,30 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
-public class Prop_cov extends AppCompatActivity {
-
+public class NotificationsActivity extends AppCompatActivity {
+    String num_et;
     private RecyclerView mRecyclerView;
-    private WordListAdapter mAdapter;
-    private  LinkedList<LinkedList> mWordList = new LinkedList<>();
+    private WordListAdapter2 mAdapter;
+    private  LinkedList<LinkedList> List = new LinkedList<>();
 
     MyDBHandler db_chercher;
-    String ville,date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prop_cov);
-
+        setContentView(R.layout.activity_notifications);
         db_chercher=new MyDBHandler(this);
-
-
-
         Intent i=getIntent();
-        ville=i.getExtras().getString("spville");
-        date=i.getExtras().getString("date");
-        mWordList=db_chercher.chercher_proposition(ville,date);
+        num_et=i.getStringExtra("num_et");
+        List=db_chercher.chercher_notification(num_et);
 
-        if(mWordList.size()==0)
+        if(List.size()==0)
         {
             Toast.makeText(this,"Aucune notification trouvée",Toast.LENGTH_LONG).show();
         }
         else
         {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        mAdapter = new WordListAdapter(this, mWordList);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview2);
+        mAdapter = new WordListAdapter2(this, List);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));}
     }

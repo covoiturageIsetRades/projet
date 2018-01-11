@@ -26,7 +26,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Proposer" />
         <activity android:name=".Chercher" />
-        <activity android:name=".Prop_cov"></activity>
+        <activity android:name=".Prop_cov" />
+        <activity android:name=".NotificationsActivity"></activity>
     </application>
 
 </manifest>
