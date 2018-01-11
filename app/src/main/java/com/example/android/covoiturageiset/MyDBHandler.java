@@ -120,6 +120,16 @@ public class MyDBHandler extends SQLiteOpenHelper{
         Log.d("addProposition","add="+Long.toString(add));
         return add;
     }
+    public long addNotification(Notification not){
+        ContentValues values = new ContentValues();
+        values.put(COL_NUM_SENDER, not.getNum_sender());
+        values.put(COL_NUM_RECEIVER, not.getNum_receiver());
+        SQLiteDatabase db = getWritableDatabase();
+        Long add=db.insert( TABLE_NOTIFICATIONS, null, values);
+        db.close();
+        Log.d("addNotification","add="+Long.toString(add));
+        return add;
+    }
 
     public void deleteEtudiant(String num_etudiant){
         SQLiteDatabase db = getWritableDatabase();
